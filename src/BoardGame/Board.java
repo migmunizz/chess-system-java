@@ -10,6 +10,12 @@ public class Board {
         this.columns = columns;
         pieces = new Piece[rows][columns];
     }
+    public Piece piece(int row,int colomn){
+        return pieces[row][colomn];
+    }
+    public Piece piece(Position position){
+        return pieces[position.getRow()][position.getColumn()];
+    }
 
     public int getRows() {
         return rows;

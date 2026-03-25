@@ -2,9 +2,14 @@ package aplication;
 
 import Chess.ChessPiece;
 
+import Chess.ChessPositon;
 import Chess.Color;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class UI {
+
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -24,6 +29,18 @@ public class UI {
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+
+    public static ChessPositon readPosition(Scanner sc){
+        try {
+            String s = sc.nextLine();
+            char column = s.charAt(0);
+            int row = Integer.parseInt(s.substring(1));
+            return new ChessPositon(column, row);
+        }catch (RuntimeException e){
+            throw new InputMismatchException("Error reading Chess position");
+        }
+    }
+
 
     public static void printBoard(ChessPiece[][] pieces){
         for (int i = 0; i < pieces.length; i++){
@@ -50,4 +67,5 @@ public class UI {
         }
         System.out.print(" ");
     }
+
 }
